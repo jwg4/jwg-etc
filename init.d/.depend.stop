@@ -1,9 +1,9 @@
-TARGETS = triggerhappy ifplugd nginx lightdm plymouth alsa-utils urandom sendsigs fake-hwclock rsyslog umountnfs.sh rpcbind nfs-common hwclock.sh networking umountfs umountroot halt reboot
-sendsigs: triggerhappy alsa-utils plymouth lightdm ifplugd nginx
+TARGETS = triggerhappy fake-hwclock ifplugd uwsgi nginx plymouth alsa-utils urandom lightdm sendsigs rsyslog umountnfs.sh nfs-common rpcbind hwclock.sh networking umountfs umountroot halt reboot
+sendsigs: lightdm triggerhappy alsa-utils plymouth nginx ifplugd uwsgi
 rsyslog: sendsigs nginx
-umountnfs.sh: triggerhappy alsa-utils plymouth sendsigs lightdm ifplugd rsyslog nginx
-networking: umountnfs.sh rpcbind ifplugd nginx
-umountfs: umountnfs.sh triggerhappy alsa-utils plymouth urandom rpcbind lightdm hwclock.sh ifplugd networking nginx
-umountroot: fake-hwclock umountfs
+umountnfs.sh: lightdm triggerhappy alsa-utils plymouth rsyslog nginx sendsigs ifplugd uwsgi
+networking: nginx rpcbind umountnfs.sh ifplugd uwsgi
+umountfs: lightdm triggerhappy alsa-utils plymouth hwclock.sh networking urandom nginx rpcbind umountnfs.sh ifplugd uwsgi
+umountroot: umountfs fake-hwclock
 halt: umountroot
 reboot: umountroot

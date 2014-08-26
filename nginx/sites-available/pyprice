@@ -37,6 +37,11 @@ server {
 		# include /etc/nginx/naxsi.rules
 	}
 
+	location /static/ {
+		 alias /home/pi/pfp/htdocs/;
+		 allow all;
+	}
+
 	location /doc/ {
 		alias /usr/share/doc/;
 		autoindex on;

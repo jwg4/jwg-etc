@@ -28,9 +28,11 @@ server {
 	server_name localhost;
 
 	location / {
+		uwsgi_pass unix:/run/uwsgi/app/pyprice/socket;
+		include	   uwsgi_params;
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ /index.html;
+		# try_files $uri $uri/ /index.html;
 		# Uncomment to enable naxsi on this location
 		# include /etc/nginx/naxsi.rules
 	}

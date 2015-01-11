@@ -1,0 +1,6 @@
+# 
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+/dev/mmcblk0p7  /boot           vfat    defaults        0       0
+/dev/sda1	/media/elements	ntfs-3g	defaults	0	0
